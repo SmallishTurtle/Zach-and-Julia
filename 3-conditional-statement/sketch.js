@@ -26,7 +26,7 @@ function setup() {
 
 
 function draw(){
-	background(173, 216, 230);
+	background(0, 26, 230);
   if (princessDied==false){
     stroke(2);
     fill("white")
