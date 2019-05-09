@@ -1,10 +1,5 @@
 //create an empty array called balls
 let balls = [];
-let wizard;
-let point;
-let mySound;
-let princess;
-let princessDied = false;
 
 //create a variable to hold your avatar
 let me;
@@ -27,18 +22,10 @@ function setup() {
 
 function draw(){
 	background(173, 216, 230);
-  if (princessDied==false){
-    stroke(2);
-    fill("white")
-    rect(26,18,33,20);
-    fill("black");
-    text(point, 30,30);  //make
-    me.drawMe();
-    me.moveMe();
-    image(princess, 10, 130, 75,120);
-    //line(85,120,85,240);
-    //image(princess, 0, 200);
-
+  stroke(0);
+  fill(this.color);
+ bezier(231, 73, 268, 188, 188, 191, 231, 72);
+}
     if (frameCount % 40 == 0) {
         let  b = new Ball(width, random(0,height), -3);
         balls.push(b);
@@ -51,13 +38,6 @@ function draw(){
             balls[i].moveBall();
             balls[i].bounceBall();
       }
-
-  }
-
-  else if(princessDied == true){
-    me.die();
-  }
-
 
 }
 
@@ -145,7 +125,6 @@ class Ball {
     		}
         if(this.x>= 84 && this.x<= 86 && this.y > 120 && this.y < 240){
 
-          princessDied = true;
         }
 
   	}
