@@ -1,14 +1,23 @@
 //create an empty array called balls
 let balls = [];
+let wizard;
+let point;
+let mySound;
+let seed;
+let seedDied = false;
+let waterpoint;
+let seedgrowth1;
+let seedgrowth1 = false;
+let seedgrowth = true;
 
 //create a variable to hold your avatar
 let me;
 
 function preload() {
   wizard = loadImage('mrWizard.png');
-  princess = loadImage('Princess.png')
+  seed = loadImage('Seed11.png')
   soundFormats('mp3', 'ogg');
-  mySound = loadSound('sound.mp3');  //princess = loadImage('Princess.png');
+  mySound = loadSound('sound.mp3');  //seed = loadImage('Seed11.png');
 }
 
 function setup() {
@@ -21,27 +30,19 @@ function setup() {
 
 
 function draw(){
-// <<<<<<< Seed
-// 	background(200, 216, 230);
-//   if (princessDied==false){
-//     stroke(2);
-//     fill("white")
-//     rect(26,18,33,20);
-//     fill("black");
-//     text(point, 30,30);  //make
-//     me.drawMe();
-//     me.moveMe();
-//     image(princess, 10, 130, 75,120);
-//     //line(85,120,85,240);
-//     //image(princess, 0, 200);
+	background(173, 216, 230);
+  if (seedDied==false){
+    stroke(2);
+    fill("white")
+    rect(26,18,33,20);
+    fill("black");
+    text(point, 30,30);  //make
+    me.drawMe();
+    me.moveMe();
+    image(seed, 250, 300, 10,20);
+    //line(85,120,85,240);
+    //image(seed, 0, 200);
 
-// =======
-// 	background(173, 216, 230);
-//   stroke(0);
-//   fill(this.color);
-//  bezier(231, 73, 268, 188, 188, 191, 231, 72);
-// }
-// >>>>>>> master
     if (frameCount % 40 == 0) {
         let  b = new Ball(width, random(0,height), -3);
         balls.push(b);
@@ -55,8 +56,38 @@ function draw(){
             balls[i].bounceBall();
       }
 
+  }
+
+  else if(seedDied == true){
+    me.die();
+  }
+
+
 }
 
+plant() {
+if (seedgrowth = true){
+  seed();
+}
+else {
+  //nothing.
+}
+  seed(){
+    image(seed, 250, 300, 10,20);
+  }
+  growth1(){
+    if (waterpoint > 3) {
+      seedgrowth1 = true;
+      seedgrowth = false;
+    }
+    if (waterpoint > 12) {
+      seedgrowth1 = false;
+      // wait ten seconds??
+      die();
+    }
+
+  }
+}
 //avatar class
 class Avatar {
 
@@ -90,13 +121,7 @@ class Avatar {
     }
 	}
 
-  die(){
-    background("black");
-    stroke("red");
-    fill("red");
-    text("the princess died",100, 200);
-    text("you got "+point+" points", 100, 220);
-  }
+
 
 }
 
@@ -141,7 +166,16 @@ class Ball {
     		}
         if(this.x>= 84 && this.x<= 86 && this.y > 120 && this.y < 240){
 
+          seedDied = true;
         }
 
   	}
+}
+
+die(){
+  background("black");
+  stroke("red");
+  fill("red");
+  text("the seed died",100, 200);
+  text("you got "+point+" points", 100, 220);
 }
