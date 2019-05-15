@@ -193,10 +193,16 @@ function death(){
   text("you died", 100, 100);
   print("you died");
   localStorage.clear();
-  location.reload();
+//  location.reload();
 }
 
 function keyPressed(){
+  if (keyCode === ENTER){
+  localStorage.clear();
+
+  location.reload();
+}
+
   if (keyCode === UP_ARROW) {
      let  b = new Ball(random(400,500), random(400,300),"lightblue");
      waterpoint = waterpoint +1;
