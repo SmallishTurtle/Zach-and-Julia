@@ -47,6 +47,7 @@ function draw(){
         }
           if(growth == true){
           image(sprout, 20,20,300,300);
+          // continue?
           //seed.hide();
         }
           if(growth == false){
