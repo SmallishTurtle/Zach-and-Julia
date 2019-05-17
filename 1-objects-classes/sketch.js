@@ -4,36 +4,23 @@ let anotherBall;
 
 function setup() {
   createCanvas(800, 400);
-  b = new Ball(0, 100,"red"); //make a new ball from the Ball class and call it b.
-  anotherBall = new Ball(200,20,"green");
 }
 
 
 function draw(){
-	background(220);
-    b.drawBall(); //draw the ball called b (go look in the Ball class for the drawBall function)
-    b.moveBall(); //move the ball called b (go look in the Ball class for the moveBall function)
-    anotherBall.drawBall();
-    anotherBall.moveBall();
-
-}
-
-
-//ball class from which to create new balls with similar properties.
-class Ball {
-
-	constructor(x,y,color){ //every ball needs an x value and a y value
-		    this.x = x;
-    		this.y = y;
-        this.color= color;
-	}
-	drawBall(){  // draw a ball on the screen at x,y
-    		stroke(0);
-    		fill(this.color);
-		    ellipse(this.x,this.y,10,10);
-	}
-	moveBall(){ //update the location of the ball, so it moves across the screen
-		this.x = this.x+2;
-		this.y = this.y+.5;
-	}
+  background(222, 232, 249);
+  textFont('Helvetica');
+  textSize(20);
+  text('click space bar to begin', 300, 185);
+  textSize(15);
+  text ('Warning: clicking enter deletes all progress', 100, 240);
+  textSize(15);
+  text('Note: to successfully water your plant, follow these intervals below to', 100, 275);
+    text('enter the correct number of water drops per level', 140, 300);
+  text('Level 1: 3 < x < 12     Level 2: 5 < x < 16     Level 3: 8 < x < 16', 100,330);
+  text('Level 4: 9 < x < 17     Level 5: 11 < x < 15 (and beyond)', 100, 360);
+  textFont('Helvetica');
+  textSize(40);
+  textStyle(ITALIC);
+  text('Welcome to Tree Simulator', 150, 100);
 }
