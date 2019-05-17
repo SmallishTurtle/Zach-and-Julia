@@ -18,7 +18,6 @@ function setup() {
 }
 
 function draw(){
-  strokeWeight (10);
 background(220);
 strokeWeight (10);
 noFill();
