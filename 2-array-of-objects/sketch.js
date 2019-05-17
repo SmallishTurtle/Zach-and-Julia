@@ -2,14 +2,23 @@
 //create an empty array called balls
 let balls = [];
 let waterpoint;
+let mySound;
+
+function preload() {
+  soundFormats('mp3','ogg');
+  mySound = loadSound('relaxingmusic.mp3');
+}
+
 
 function setup() {
   createCanvas(800, 600);
    angleMode(DEGREES);
+   mySound.setVolume(5);
+   mySound.play();
 }
 
 function draw(){
-	background(220);
+	background(44,89,163);
   strokeWeight (10);
 noFill();
 bezier(154, 199, 0, 170, 3, 425, 79, 370);
