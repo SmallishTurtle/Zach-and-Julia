@@ -26,6 +26,7 @@ function preload() {
 }
 
 function setup() {
+  localStorage.clear();
   createCanvas(1000, 900);
   fill(144,238,14);
   waterpoint = 0;
