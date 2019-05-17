@@ -2,7 +2,7 @@ let level = localStorage.getItem("current_level");
 let balls = [];
 let waterpoint;
 let growth;
-let timer = 10;
+let timer = 30;
 let dead = false;
 let seed;
 let sprout;
@@ -12,7 +12,7 @@ let thictree;
 let blossoms;
 let apples;
 let plantpic;
-let yes = 1;
+let mySound;
 
 function preload() {
   seed = loadImage('Tree-1.png.png');
@@ -23,15 +23,19 @@ function preload() {
   blossoms = loadImage('Tree-6.png.png');
   apples = loadImage('Tree-7.png.png');
   deadtree = loadImage('Tree-9.png.png');
+  soundFormats('mp3','ogg');
+  mySound = loadSound('relaxingmusic.mp3');
 }
 
 function setup() {
   localStorage.clear();
-  createCanvas(1000, 900);
+  createCanvas(900, 900);
   fill(144,238,14);
   waterpoint = 0;
   growth = 0;
   angleMode(DEGREES);
+  mySound.setVolume(5);
+  mySound.play();
 }
 
 function wateringcan(){
@@ -66,7 +70,7 @@ if(localStorage){
             }
           //julia's stuff
           life();
-          image(seed,50,0,900,900);
+          image(seed,0,0,900,900);
             timer = timer-1;
             if (timer == 0){
               if (waterpoint>3 && waterpoint< 12){
@@ -77,7 +81,7 @@ if(localStorage){
               }
                 if(growth == true){
                 background(44,89,163);
-                image(sprout, 50,0,900,900);
+                image(sprout, 0,0,900,900);
                 level ++;
                 // Store
                 localStorage.setItem("current_level", level);
@@ -103,7 +107,7 @@ if(localStorage){
                   }
               //julia's stuff
               life();
-              image(sprout,50,0,900,900);
+              image(sprout,0,0,900,900);
                 timer = timer-1;
                 if (timer == 0){
                     if (waterpoint>5 && waterpoint< 16){
@@ -114,7 +118,7 @@ if(localStorage){
                 }
                 if(growth == true){
                     background(44,89,163);
-                    image(tinytree, 50,0,900,900);
+                    image(tinytree, 0,0,900,900);
                     level ++;
                     localStorage.setItem("current_level", level);
                     location.reload();
@@ -129,24 +133,20 @@ if(localStorage){
   }
 
   else if(level == 2){
-  if (timer==0){
-    timer = 10;
-    waterpoint = 0;
-  }
-  if (frameCount % 60 == 0 && timer > 0) {
+    if (frameCount % 60 == 0 && timer > 0) {
     //zach's stuff
     background(44,89,163);
     wateringcan();
 
-    for (let i = 0; i < balls.length; i++) {
+      for (let i = 0; i < balls.length; i++) {
         balls[i].drawBall();
         balls[i].moveBall();
         print("thishasrun");
       }
     //julia's stuff
     life();
-    image(tinytree,50,0,900,900);
-      timer = timer-1;
+    image(tinytree,0,0,900,900);
+    timer = timer-1;
       if (timer == 0){
         if (waterpoint>8 && waterpoint< 16){
           growth = true
@@ -154,9 +154,9 @@ if(localStorage){
         else{
           growth = false;
         }
-          if(growth == true){
+        if(growth == true){
           background(44,89,163);
-          image(smoltree, 50,0,900,900);
+          image(smoltree, 0,0,900,900);
           level ++;
           // Store
           localStorage.setItem("current_level", level);
@@ -164,9 +164,163 @@ if(localStorage){
           // continue?
           //seed.hide();
         }
-          if(growth == false){
+        if(growth == false){
             death();
-          }
+        }
+      }
+    }
+  }
+  else if(level == 3){
+    if (frameCount % 60 == 0 && timer > 0) {
+    //zach's stuff
+    background(44,89,163);
+    wateringcan();
+
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].drawBall();
+        balls[i].moveBall();
+        print("thishasrun");
+      }
+    //julia's stuff
+    life();
+    image(smoltree,0,0,900,900);
+    timer = timer-1;
+      if (timer == 0){
+        if (waterpoint>9 && waterpoint< 17){
+          growth = true
+        }
+        else{
+          growth = false;
+        }
+        if(growth == true){
+          background(44,89,163);
+          image(thictree, 0,0,900,900);
+          level ++;
+          // Store
+          localStorage.setItem("current_level", level);
+          location.reload();
+          // continue?
+          //seed.hide();
+        }
+        if(growth == false){
+            death();
+        }
+      }
+    }
+  }
+
+  else if(level == 4){
+    if (frameCount % 60 == 0 && timer > 0) {
+    //zach's stuff
+    background(44,89,163);
+    wateringcan();
+
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].drawBall();
+        balls[i].moveBall();
+        print("thishasrun");
+      }
+    //julia's stuff
+    life();
+    image(thictree,0,0,900,900);
+    timer = timer-1;
+      if (timer == 0){
+        if (waterpoint>11 && waterpoint< 15){
+          growth = true
+        }
+        else{
+          growth = false;
+        }
+        if(growth == true){
+          background(44,89,163);
+          image(blossoms, 0,0,900,900);
+          level ++;
+          // Store
+          localStorage.setItem("current_level", level);
+          location.reload();
+          // continue?
+          //seed.hide();
+        }
+        if(growth == false){
+            death();
+        }
+      }
+    }
+  }
+
+  else if(level == 5){
+    if (frameCount % 60 == 0 && timer > 0) {
+    //zach's stuff
+    background(44,89,163);
+    wateringcan();
+
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].drawBall();
+        balls[i].moveBall();
+        print("thishasrun");
+      }
+    //julia's stuff
+    life();
+    image(blossoms,0,0,900,900);
+    timer = timer-1;
+      if (timer == 0){
+        if (waterpoint>9 && waterpoint< 17){
+          growth = true
+        }
+        else{
+          growth = false;
+        }
+        if(growth == true){
+          background(44,89,163);
+          image(fruit, 0,0,900,900);
+          level ++;
+          // Store
+          localStorage.setItem("current_level", level);
+          location.reload();
+          // continue?
+          //seed.hide();
+        }
+        if(growth == false){
+            death();
+        }
+      }
+    }
+  }
+  else if(level == 6){
+    if (frameCount % 60 == 0 && timer > 0) {
+    //zach's stuff
+    background(44,89,163);
+    wateringcan();
+
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].drawBall();
+        balls[i].moveBall();
+        print("thishasrun");
+      }
+    //julia's stuff
+    life();
+    image(fruit,0,0,900,900);
+    timer = timer-1;
+      if (timer == 0){
+        if (waterpoint>11 && waterpoint< 15){
+          growth = true
+        }
+        else{
+          growth = false;
+        }
+        if(growth == true){
+          background(44,89,163);
+          image(thictree, 0,0,900,900);
+          // Store
+          localStorage.setItem("current_level", level);
+          location.reload();
+          level = 4;
+          // continue?
+          //seed.hide();
+        }
+        if(growth == false){
+            death();
+        }
       }
     }
   }
@@ -182,15 +336,19 @@ else{
 
 function life(){
   //image(plantpic, 20,20,400,400);
-  fill("blue");
-  //rect(290,290,20,20);
-  text(waterpoint, 100, 200);
-  text(timer, 100,250);
+  fill("white");
+  rect(698,167+400,184,38);
+  rect(748,217+400,83,38);
+  fill(44,89,163);
+  text("amount you've watered your plant", 700, 180+400);
+  text(waterpoint, 785, 200+400);
+  text("time remaining",750,230+400);
+  text(timer, 785,250+400);
 }
 
 function death(){
-  background(0,100,3);
-  image(deadtree,50,0,900,900)
+  background(44,89,163);
+  image(deadtree,0,0,900,900)
   text("you died", 100, 100);
   print("you died");
   localStorage.clear();
@@ -200,7 +358,6 @@ function death(){
 function keyPressed(){
   if (keyCode === ENTER){
   localStorage.clear();
-
   location.reload();
 }
 
@@ -209,6 +366,12 @@ function keyPressed(){
      waterpoint = waterpoint +1;
      balls.push(b);
      console.log(balls);
+  }
+
+  if (keyCode === SPACE){
+    localStorage.clear();
+    location.reload();
+    level= null;
   }
   return false; //
 }
@@ -237,244 +400,3 @@ class Ball {
     // }
 	}
 }
-
-
-
-
-
-
-//function timer(){
-// something.
-//}
-
-// function seed2sprout(){
-//   //plantpic = seed;
-// if (dead == false){
-//     //print(plantpic);
-//     background(0,100,3);
-//     life();
-//     if(growth<1){
-//       image(seed, 20,20,400,400);
-//     }
-//     if (waterpoint > 3){
-//       growth = true;
-//       image(seed, 20,20,400,400);
-//       //fill(100,100,100);
-//     }
-//     if (waterpoint > 12){
-//       //fill(144,238,14);
-//       growth = false;
-//     }
-//
-//     if (frameCount % 60 == 0 && timer > 0) {
-//     timer = timer-1;
-//     if (timer == 0){
-//
-//       if(growth == true){
-//       //image(sprout, 20,20,400,400);
-//       fill(100,100,100);
-//       print("it worked?");
-//       rect(0,0,1000,1000);
-//       image(sprout, 20,20,400,400);
-//     }
-//     else {
-//       fill(30,50,210);
-//       dead = true;
-//     }
-//     }
-//     }
-//   }
-// if (dead == true){
-//     death();
-//   }
-// }
-//
-// function sprout2tinytree(){
-//   if (dead == false){
-//     life();
-//   }
-//   if (dead == true){
-//     death();
-//   }
-//    // fill(colour);
-//    if (waterpoint > 7){
-//      growth = true;
-//      //fill(100,100,100);
-//    }
-//    if (waterpoint > 18){
-//      //fill(144,238,14);
-//      growth = false;
-//    }
-//
-//  if (frameCount % 60 == 0 && timer > 0) {
-//    timer = timer-1;
-//    if (timer == 0){
-//
-//      if(growth = true){
-//      fill(100,100,100);
-//    }
-//    else {
-//      fill(30,50, 210);
-//      dead = true;
-//    }
-// }
-// }
-// }
-//
-// function tinytree2smoltree(){
-//   if (dead == false){
-//     life();
-//   }
-//   if (dead == true){
-//     death();
-//   }
-//    // fill(colour);
-//    if (waterpoint > 7){
-//      growth = 2;
-//      //fill(100,100,100);
-//    }
-//    if (waterpoint > 18){
-//      //fill(144,238,14);
-//      growth = 0;
-//    }
-//
-//  if (frameCount % 60 == 0 && timer > 0) {
-//    timer = timer-1;
-//    if (timer == 0){
-//
-//      if(growth > 1){
-//      fill(100,100,100);
-//
-//    }
-//    else {
-//      fill(30,50, 210);
-//      dead = true;
-// }
-// }
-// }
-// }
-//
-// function smoltree2thictree(){
-//   if (dead == false){
-//     life();
-//   }
-//   if (dead == true){
-//     death();
-//   }
-//    // fill(colour);
-//    if (waterpoint > 10){
-//      growth = 2;
-//      //fill(100,100,100);
-//    }
-//    if (waterpoint > 14){
-//      //fill(144,238,14);
-//      growth = 0;
-//    }
-//
-//  if (frameCount % 60 == 0 && timer > 0) {
-//    timer = timer-1;
-//    if (timer == 0){
-//
-//      if(growth > 1){
-//      fill(100,100,100);
-//    }
-//    else {
-//      fill(30,50, 210);
-//      dead = true;
-// }
-// }
-// }
-// }
-//
-// function thictree2blossoms(){
-//   if (dead == false){
-//     life();
-//   }
-//   if (dead == true){
-//     death();
-//   }
-//    // fill(colour);
-//    if (waterpoint > 12){
-//      growth = 2;
-//      //fill(100,100,100);
-//    }
-//    if (waterpoint > 16){
-//      //fill(144,238,14);
-//      growth = 0;
-//    }
-//
-//  if (frameCount % 60 == 0 && timer > 0) {
-//    timer = timer-1;
-//    if (timer == 0){
-//
-//      if(growth > 1){
-//      fill(100,100,100);
-//    }
-//    else {
-//      fill(30,50, 210);
-//      dead = true;
-// }
-// }
-// }
-// }
-//
-//
-// function blossoms2fruit(){
-//   if (dead == false){
-//     life();
-//   }
-//   if (dead == true){
-//     death();
-//   }
-//    // fill(colour);
-//    if (waterpoint > 10){
-//      growth = 2;
-//      //fill(100,100,100);
-//    }
-//    if (waterpoint > 12){
-//      //fill(144,238,14);
-//      growth = 0;
-//    }
-//
-//  if (frameCount % 60 == 0 && timer > 0) {
-//    timer = timer-1;
-//    if (timer == 0){
-//
-//      if(growth > 1){
-//      fill(100,100,100);
-//    }
-//    else {
-//      fill(30,50, 210);
-//      dead = true;
-// }
-// }}}
-//
-// function fruit2normal(){
-//   if (dead == false){
-//     life();
-//   }
-//   if (dead == true){
-//     death();
-//   }
-//    // fill(colour);
-//    if (waterpoint > 10){
-//      growth = 2;
-//      //fill(100,100,100);
-//    }
-//    if (waterpoint > 17){
-//      //fill(144,238,14);
-//      growth = 0;
-//    }
-//
-//  if (frameCount % 60 == 0 && timer > 0) {
-//    timer = timer-1;
-//    if (timer == 0){
-//
-//      if(growth > 1){
-//      fill(100,100,100);
-//    }
-//    else {
-//      fill(30,50, 210);
-//      dead = true;
-// }
-// }}}

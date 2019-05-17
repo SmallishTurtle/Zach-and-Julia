@@ -18,8 +18,9 @@ function setup() {
 }
 
 function draw(){
-	background(44,89,163);
   strokeWeight (10);
+background(220);
+strokeWeight (10);
 noFill();
 bezier(154, 199, 0, 170, 3, 425, 79, 370);
 strokeWeight (0);
