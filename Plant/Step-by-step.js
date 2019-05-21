@@ -23,6 +23,7 @@ function preload() {
   blossoms = loadImage('Tree-6.png.png');
   apples = loadImage('Tree-7.png.png');
   deadtree = loadImage('Tree-9.png.png');
+  plantit = loadImage('Tree-10.png.png');
   soundFormats('mp3','ogg');
   mySound = loadSound('relaxingmusic.mp3');
 }
@@ -56,8 +57,10 @@ function wateringcan(){
 
 function draw(){
 //new simple structure
-if(localStorage){
-  if (level == null){
+if  (level == null){
+  begin();
+}
+  else if (level == 1){
           if (frameCount % 60 == 0 && timer > 0) {
     //zach's stuff
           background(44,89,163);
@@ -95,7 +98,7 @@ if(localStorage){
               }
             }
     }
-    else if(level == 1){
+    else if(level == 2){
         if (frameCount % 60 == 0 && timer > 0) {
               //zach's stuff
               background(44,89,163);
@@ -132,7 +135,7 @@ if(localStorage){
               }
   }
 
-  else if(level == 2){
+  else if(level == 3){
     if (frameCount % 60 == 0 && timer > 0) {
     //zach's stuff
     background(44,89,163);
@@ -170,7 +173,7 @@ if(localStorage){
       }
     }
   }
-  else if(level == 3){
+  else if(level == 4){
     if (frameCount % 60 == 0 && timer > 0) {
     //zach's stuff
     background(44,89,163);
@@ -209,7 +212,7 @@ if(localStorage){
     }
   }
 
-  else if(level == 4){
+  else if(level == 5){
     if (frameCount % 60 == 0 && timer > 0) {
     //zach's stuff
     background(44,89,163);
@@ -248,7 +251,7 @@ if(localStorage){
     }
   }
 
-  else if(level == 5){
+  else if(level == 6){
     if (frameCount % 60 == 0 && timer > 0) {
     //zach's stuff
     background(44,89,163);
@@ -272,8 +275,8 @@ if(localStorage){
         }
         if(growth == true){
           background(44,89,163);
-          image(fruit, 0,0,900,900);
-          level ++;
+          image(apple, 0,0,900,900);
+          level --;
           // Store
           localStorage.setItem("current_level", level);
           location.reload();
@@ -286,7 +289,7 @@ if(localStorage){
       }
     }
   }
-  else if(level == 6){
+  else if(level == 7){
     if (frameCount % 60 == 0 && timer > 0) {
     //zach's stuff
     background(44,89,163);
@@ -299,7 +302,7 @@ if(localStorage){
       }
     //julia's stuff
     life();
-    image(fruit,0,0,900,900);
+    image(apples,0,0,900,900);
     timer = timer-1;
       if (timer == 0){
         if (waterpoint>11 && waterpoint< 15){
@@ -314,7 +317,7 @@ if(localStorage){
           // Store
           localStorage.setItem("current_level", level);
           location.reload();
-          level = 4;
+          level = 5;
           // continue?
           //seed.hide();
         }
@@ -326,17 +329,15 @@ if(localStorage){
   }
 }
 
-else{
-     print("Sorry, your browser do not support local storage.");
- }
-}
 
 
 
 
 function life(){
   //image(plantpic, 20,20,400,400);
+  textSize(12);
   fill("white");
+  text('level'+ level, 785, 850);
   rect(698,167+400,184,38);
   rect(748,217+400,83,38);
   fill(44,89,163);
@@ -348,9 +349,12 @@ function life(){
 
 function death(){
   background(44,89,163);
-  image(deadtree,0,0,900,900)
-  text("you died", 100, 100);
-  print("you died");
+  textFont('Helvetica');
+  textSize(20);
+  fill(255,255,255);
+  text("You died. Press enter to restart.", 350, 30);
+  image(deadtree,0,0,900,900);
+  //print("you died");
   localStorage.clear();
 //  location.reload();
 }
@@ -368,10 +372,8 @@ function keyPressed(){
      console.log(balls);
   }
 
-  if (keyCode === SPACE){
-    localStorage.clear();
-    location.reload();
-    level= null;
+  if (keyCode === SHIFT){
+    level= 1;
   }
   return false; //
 }
@@ -399,4 +401,25 @@ class Ball {
     //    this.y = -20
     // }
 	}
+}
+
+function begin() {
+  background(222, 232, 249);
+  textFont('Helvetica');
+  textSize(20);
+  fill(44,89,163);
+  text('click shift to begin', 300, 185);
+  text (' press the up arrow to water your plant', 220, 160);
+  textSize(15);
+  text ('Warning: clicking enter deletes all progress', 100, 240);
+  textSize(15);
+  text('Note: to successfully water your plant, follow these intervals below to', 100, 275);
+  text('enter the correct number of water drops per level', 140, 300);
+  text('Level 1: 3 < x < 12     Level 2: 5 < x < 16     Level 3: 8 < x < 16', 100,330);
+  text('Level 4: 9 < x < 17     Level 5: 11 < x < 15 (and beyond)', 100, 360);
+  textFont('Helvetica');
+  textSize(40);
+  textStyle(ITALIC);
+  text('Welcome to Tree Simulator', 150, 100);
+  image(plantit,0,0,900,900);
 }

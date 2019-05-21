@@ -6,8 +6,11 @@ function setup() {
   createCanvas(800, 400);
 }
 
-
 function draw(){
+  begin();
+}
+
+function begin() {
   background(222, 232, 249);
   textFont('Helvetica');
   textSize(20);
