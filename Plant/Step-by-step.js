@@ -276,7 +276,7 @@ if  (level == null){
         if(growth == true){
           background(44,89,163);
           image(apple, 0,0,900,900);
-          level ++;
+          level --;
           // Store
           localStorage.setItem("current_level", level);
           location.reload();
@@ -349,9 +349,12 @@ function life(){
 
 function death(){
   background(44,89,163);
-  image(deadtree,0,0,900,900)
-  text("you died", 100, 100);
-  print("you died");
+  textFont('Helvetica');
+  textSize(20);
+  fill(255,255,255);
+  text("You died. Press enter to restart.", 350, 30);
+  image(deadtree,0,0,900,900);
+  //print("you died");
   localStorage.clear();
 //  location.reload();
 }
@@ -411,7 +414,7 @@ function begin() {
   text ('Warning: clicking enter deletes all progress', 100, 240);
   textSize(15);
   text('Note: to successfully water your plant, follow these intervals below to', 100, 275);
-    text('enter the correct number of water drops per level', 140, 300);
+  text('enter the correct number of water drops per level', 140, 300);
   text('Level 1: 3 < x < 12     Level 2: 5 < x < 16     Level 3: 8 < x < 16', 100,330);
   text('Level 4: 9 < x < 17     Level 5: 11 < x < 15 (and beyond)', 100, 360);
   textFont('Helvetica');
